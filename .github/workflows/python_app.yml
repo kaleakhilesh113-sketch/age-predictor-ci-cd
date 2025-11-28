@@ -38,8 +38,4 @@ jobs:
           mkdir -p build
           cp -r * build/   # copy project output files to build folder
 
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v4
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./build
+     
