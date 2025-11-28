@@ -32,10 +32,16 @@ jobs:
         run: |
           pytest || echo "⚠ Tests were not found, skipping!"
 
-      # Build website / UI if needed
-      - name: Build project
+      - name: Build project output
         run: |
           mkdir -p build
-          cp -r * build/   # copy project output files to build folder
+          cp predict.py build/
+          cp -r saved_model build/ 2>/dev/null || echo "No saved_model folder"
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./build
 
      
